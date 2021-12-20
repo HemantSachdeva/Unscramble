@@ -8,6 +8,12 @@ class GameViewModel : ViewModel() {
     private var score = 0
     private var currentWordCount = 0
 
+    // variable to hold a list of words you use in the game, to avoid repetitions
+    private var wordsList: MutableList<String> = mutableListOf()
+
+    // variable to hold the word the player is trying to unscramble
+    private lateinit var currentWord: String
+
     // Declare private mutable variable that can only be modified
     // within the class it is declared.
     private var _currentScrambledWord = "test"
@@ -17,6 +23,18 @@ class GameViewModel : ViewModel() {
     // When count is accessed, the get() function is called and
     // the value of _count is returned.
     val currentScrambledWord: String get() = _currentScrambledWord
+
+    /*
+    * Updates currentWord and currentScrambledWord with the next word.
+    */
+    private fun getNextWord() {
+        currentWord = allWordsList.random()
+        val tempWord = currentWord.toCharArray()
+
+        while (String(tempWord).equals(currentWord, false)) {
+            tempWord.shuffle()
+        }
+    }
 
     init {
         Log.d(TAG, "GameViewModel created!")
