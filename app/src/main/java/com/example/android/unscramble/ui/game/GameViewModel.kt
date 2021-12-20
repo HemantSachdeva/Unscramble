@@ -1,5 +1,6 @@
 package com.example.android.unscramble.ui.game
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
@@ -16,4 +17,17 @@ class GameViewModel : ViewModel() {
     // When count is accessed, the get() function is called and
     // the value of _count is returned.
     val currentScrambledWord: String get() = _currentScrambledWord
+
+    init {
+        Log.d(TAG, "GameViewModel created!")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(TAG, "GameViewModel Destroyed")
+    }
+
+    companion object {
+        const val TAG = "GameFragment"
+    }
 }
