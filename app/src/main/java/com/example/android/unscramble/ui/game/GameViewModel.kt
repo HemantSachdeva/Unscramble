@@ -16,7 +16,7 @@ class GameViewModel : ViewModel() {
 
     // Declare private mutable variable that can only be modified
     // within the class it is declared.
-    private var _currentScrambledWord = "test"
+    private lateinit var _currentScrambledWord: String
 
     // Declare another public immutable field and override its getter method.
     // Return the private property's value in the getter method.
@@ -46,6 +46,7 @@ class GameViewModel : ViewModel() {
 
     init {
         Log.d(TAG, "GameViewModel created!")
+        getNextWord()
     }
 
     override fun onCleared() {
