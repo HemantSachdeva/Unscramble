@@ -34,6 +34,14 @@ class GameViewModel : ViewModel() {
         while (String(tempWord).equals(currentWord, false)) {
             tempWord.shuffle()
         }
+
+        if (wordsList.contains(currentWord)) {
+            getNextWord()
+        } else {
+            _currentScrambledWord = String(tempWord)
+            ++currentWordCount
+            wordsList.add(currentWord)
+        }
     }
 
     init {
