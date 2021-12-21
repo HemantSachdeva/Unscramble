@@ -54,6 +54,17 @@ class GameViewModel : ViewModel() {
         Log.d(TAG, "GameViewModel Destroyed")
     }
 
+    /*
+    * Returns true if the current word count is less than MAX_NO_OF_WORDS.
+    * Updates the next word.
+    */
+    fun nextWord(): Boolean {
+        return if (currentWordCount < MAX_NO_OF_WORDS) {
+            getNextWord()
+            true
+        } else false
+    }
+
     companion object {
         const val TAG = "GameFragment"
     }
