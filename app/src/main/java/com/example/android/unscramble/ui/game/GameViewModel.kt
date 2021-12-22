@@ -7,7 +7,8 @@ class GameViewModel : ViewModel() {
 
     private var _score = 0
     val score: Int get() = _score
-    private var currentWordCount = 0
+    private var _currentWordCount = 0
+    val currentWordCount: Int get() = _currentWordCount
 
     // variable to hold a list of words you use in the game, to avoid repetitions
     private var wordsList: MutableList<String> = mutableListOf()
@@ -40,7 +41,7 @@ class GameViewModel : ViewModel() {
             getNextWord()
         } else {
             _currentScrambledWord = String(tempWord)
-            ++currentWordCount
+            ++_currentWordCount
             wordsList.add(currentWord)
         }
     }
