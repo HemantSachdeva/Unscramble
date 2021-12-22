@@ -79,6 +79,16 @@ class GameViewModel : ViewModel() {
         } else false
     }
 
+    /*
+     * Re-initializes the game data to restart the game.
+     */
+    fun reinitializeData() {
+        _score = 0
+        _currentWordCount = 0
+        wordsList.clear()
+        getNextWord()
+    }
+
     companion object {
         const val TAG = "GameFragment"
     }
