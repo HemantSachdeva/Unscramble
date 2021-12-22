@@ -60,13 +60,25 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Setup a click listener for the Submit and Skip buttons.
-        binding.submit.setOnClickListener { /* onSubmitWord() */ }
+        binding.submit.setOnClickListener { onSubmitWord() }
         binding.skip.setOnClickListener { /* onSkipWord() */ }
         // Update the UI
         updateNextWordOnScreen()
         binding.score.text = getString(R.string.score, 0)
         binding.wordCount.text = getString(
                 R.string.word_count, 0, MAX_NO_OF_WORDS)
+    }
+
+    /*
+     * Checks the user's word, and updates the score accordingly.
+     * Displays the next scrambled word.
+     */
+    private fun onSubmitWord() {
+        if (viewModel.nextWord()) {
+            updateNextWordOnScreen()
+        } else {
+            showFinalScoreDialog()
+        }
     }
 
     /*
