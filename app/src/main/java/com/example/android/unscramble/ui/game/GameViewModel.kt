@@ -1,6 +1,5 @@
 package com.example.android.unscramble.ui.game
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -49,13 +48,7 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        Log.d(TAG, "GameViewModel created!")
         getNextWord()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(TAG, "GameViewModel Destroyed")
     }
 
     private fun increaseScore() {
@@ -89,9 +82,5 @@ class GameViewModel : ViewModel() {
         _currentWordCount.value = 0
         wordsList.clear()
         getNextWord()
-    }
-
-    companion object {
-        const val TAG = "GameFragment"
     }
 }
