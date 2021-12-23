@@ -1,6 +1,8 @@
 package com.example.android.unscramble.ui.game
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
@@ -18,13 +20,13 @@ class GameViewModel : ViewModel() {
 
     // Declare private mutable variable that can only be modified
     // within the class it is declared.
-    private lateinit var _currentScrambledWord: String
+    private val _currentScrambledWord = MutableLiveData<String>()
 
     // Declare another public immutable field and override its getter method.
     // Return the private property's value in the getter method.
     // When count is accessed, the get() function is called and
     // the value of _count is returned.
-    val currentScrambledWord: String get() = _currentScrambledWord
+    val currentScrambledWord: LiveData<String> get() = _currentScrambledWord
 
     /*
     * Updates currentWord and currentScrambledWord with the next word.
@@ -40,7 +42,7 @@ class GameViewModel : ViewModel() {
         if (wordsList.contains(currentWord)) {
             getNextWord()
         } else {
-            _currentScrambledWord = String(tempWord)
+            _currentScrambledWord.value = String(tempWord)
             ++_currentWordCount
             wordsList.add(currentWord)
         }
